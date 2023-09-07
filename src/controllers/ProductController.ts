@@ -9,7 +9,7 @@ export class ProductController {
         data: {
             bar_code,
             name,
-            price,
+            price
         },
         });
 
