@@ -11,11 +11,14 @@ export class CategoryController{
             name,
           },
         });
-      return response.status(201).json(category);
-    } catch (error) {
-      return response.status(500).json({ error: 'An error occurred' });
+        if (!category) {
+            return response.status(404).json({ err: 'Categoria não encontrada!' });
+        }
+        return response.status(201).json(category);
+        } catch (error) {
+        return response.status(500).json({ error: 'An error occurred' });
+        }
     }
-  }
 
   async deleteCategory(request: Request, response: Response) {
       try {
@@ -25,12 +28,14 @@ export class CategoryController{
               id
           },
           });
-    
-          return response.status(201).json(category);
-          } catch (error) {
-              return response.status(500).json({ error: 'An error occurred' });
-          }
-      }
+          if (!category) {
+            return response.status(404).json({ err: 'Categoria não encontrada!' });
+            }
+            return response.status(201).json(category);
+            } catch (error) {
+            return response.status(500).json({ error: 'An error occurred' });
+            }
+        }
 
     async updateCategory(request: Request, response: Response) {
         try {
@@ -42,7 +47,9 @@ export class CategoryController{
             },
             where: {id}
             });
-        
+            if (!category) {
+                return response.status(404).json({ err: 'Categoria não encontrada!' });
+            }
             return response.status(201).json(category);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
@@ -57,7 +64,9 @@ export class CategoryController{
                 id
             },
             });
-            
+            if (!category) {
+                return response.status(404).json({ err: 'Categoria não encontrada!' });
+            }
             return response.status(201).json(category);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
@@ -68,7 +77,9 @@ export class CategoryController{
         try {
             const category = await prismaClient.category.findMany({
             });
-        
+            if (!category) {
+                return response.status(404).json({ err: 'Categoria não encontrada!' });
+            }
             return response.status(201).json(category);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });

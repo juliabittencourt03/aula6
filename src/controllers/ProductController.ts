@@ -12,8 +12,10 @@ export class ProductController {
             price
         },
         });
-
-        return response.json(product);
+        if (!product) {
+            return response.status(404).json({ err: 'Produto não encontrado!' });
+        }
+        return response.status(201).json(product);
         } catch (error) {
             return response.status(500).json({ error: 'An error occurred' });
         }
@@ -27,8 +29,10 @@ export class ProductController {
                 id
             },
             });
-    
-            return response.json(product);
+            if (!product) {
+                return response.status(404).json({ err: 'Produto não encontrado!' });
+            }
+            return response.status(201).json(product);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
@@ -46,12 +50,15 @@ export class ProductController {
             },
             where: {id}
             });
-        
-            return response.json(product);
+            if (!product) {
+                return response.status(404).json({ err: 'Produto não encontrado!' });
+            }
+            return response.status(201).json(product);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
         }  
+
     async findProduct(request: Request, response: Response) {
         try {
             const {id} = request.params;
@@ -60,8 +67,10 @@ export class ProductController {
                 id
             },
             });
-            
-            return response.json(product);
+             if (!product) {
+            return response.status(404).json({ err: 'Produto não encontrado!' });
+            }
+            return response.status(201).json(product);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
@@ -71,8 +80,10 @@ export class ProductController {
         try {
             const product = await prismaClient.product.findMany({
             });
-        
-            return response.json(product);
+            if (!product) {
+                return response.status(404).json({ err: 'Produto não encontrado!' });
+            }
+            return response.status(201).json(product);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }

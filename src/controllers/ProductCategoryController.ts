@@ -11,7 +11,9 @@ export class ProductCategoryController {
             id_product,
         },
         });
-
+        if (!productCategory) {
+            return response.status(404).json({ err: 'Produto e Categoria não encontrados!' });
+        }
         return response.status(201).json(productCategory);
         } catch (error) {
             return response.status(500).json({ error: 'An error occurred' });
@@ -26,8 +28,10 @@ export class ProductCategoryController {
                 id
             },
             });
-    
-            return response.json(productCategory);
+            if (!productCategory) {
+                return response.status(404).json({ err: 'Produto e Categoria não encontrados!' });
+            }
+            return response.status(201).json(productCategory);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
@@ -44,8 +48,10 @@ export class ProductCategoryController {
             },
             where: {id}
             });
-        
-            return response.json(productCategory);
+            if (!productCategory) {
+                return response.status(404).json({ err: 'Produto e Categoria não encontrados!' });
+            }
+            return response.status(201).json(productCategory);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
@@ -58,8 +64,10 @@ export class ProductCategoryController {
                 id
             },
             });
-            
-            return response.json(productCategory);
+            if (!productCategory) {
+                return response.status(404).json({ err: 'Produto e Categoria não encontrados!' });
+            }
+            return response.status(201).json(productCategory);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
@@ -69,8 +77,10 @@ export class ProductCategoryController {
         try {
             const productCategory = await prismaClient.productCategory.findMany({
             });
-        
-            return response.json(productCategory);
+            if (!productCategory) {
+                return response.status(404).json({ err: 'Produto e Categoria não encontrados!' });
+            }
+            return response.status(201).json(productCategory);
             } catch (error) {
                 return response.status(500).json({ error: 'An error occurred' });
             }
